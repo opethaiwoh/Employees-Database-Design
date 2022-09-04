@@ -7,5 +7,5 @@ CREATE TABLE Department_Manager(
 	FOREIGN KEY (dept_no) REFERENCES Departments(dept_no)
 );
 
-SELECT * FROM Department_Manager;
+SELECT * FROM "Department_Manager"
 

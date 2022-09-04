@@ -7,4 +7,4 @@ CREATE TABLE Department_Employee(
 	FOREIGN KEY (dept_no) REFERENCES Departments(dept_no)
 );
 
-SELECT * FROM Department_Employee;
+SELECT * FROM "Department_Employee"

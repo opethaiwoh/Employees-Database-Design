@@ -4,4 +4,4 @@ CREATE TABLE Departments(
 PRIMARY KEY (dept_no)
 );
 
-SELECT * FROM Departments;
+SELECT * FROM "Departments"

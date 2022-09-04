@@ -5,4 +5,5 @@ CREATE TABLE Salaries(
 	to_date date,
     FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
 );
-SELECT * FROM Salaries;
+
+SELECT * FROM "Salaries"
