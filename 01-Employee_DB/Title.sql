@@ -6,4 +6,4 @@ CREATE TABLE Title(
     FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
 );
 
-SELECT * FROM Title
+SELECT * FROM Title;

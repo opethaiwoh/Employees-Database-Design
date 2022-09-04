@@ -8,4 +8,4 @@ CREATE TABLE Employees(
 PRIMARY KEY (emp_no)
 );
 
-SELECT * FROM Employees
+SELECT * FROM Employees;
