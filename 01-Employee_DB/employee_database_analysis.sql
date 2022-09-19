@@ -53,42 +53,20 @@ ORDER BY avgSalary ASC
 
 -- 5. Compare the average salary by title for each department for the current employees.
 
-select es.dept_name, es.title, round(avg (es.salary),2) as avg_salary
-from current_employees as ce
-join(select ti.title, ds.dept_name, ds.salary, ds.emp_no
-	from "Title" as ti
-	join (select dn.dept_name, s.salary, s.emp_no
-		from "Salaries" as s
-		join(select de.emp_no, de.dept_no, d.dept_name
-			from "Department_Employee" as de
-			join "Departments" as d 
-			ON d.dept_no = de.dept_no) as dn 
-		 ON dn.emp_no = s.emp_no) as ds ON ds.emp_no = ti.emp_no)as es
-	ON es.emp_no = ce.emp_no
-Group BY es.title,es.dept_name 
-ORDER BY es.title, avg_salary asc
-;
+SELECT dept_name, title, ROUND(AVG(salary),2) Avg_salary FROM current_employees c
+JOIN "Title" t ON c.emp_no = t.emp_no
+JOIN "Department_Employee" de ON c.emp_no = de.emp_no
+JOIN "Salaries" s ON c.emp_no = s.emp_no
+JOIN "Departments" d ON d.dept_no = de.dept_no
+Group by 1,2
+order by title, Avg_salary;
 
 -- 6. Determine the number of current employees by title and grouped within departments. 
--- And, rank the results by title within each department.
+-- And, rank the results by title within each department. 
 
-select es.title, es.dept_name, count(es.emp_no) as employee_count,
-	RANK() OVER(
-		PARTITION BY count(es.emp_no)
-		ORDER BY count(es.emp_no) DESC
-	) rank
-from current_employees as ce
-join(select ti.title, ds.dept_name, ds.salary, ds.emp_no
-	from "Title" as ti
-	join (select dn.dept_name, s.salary, s.emp_no
-		from "Salaries" as s
-		join(select de.emp_no, de.dept_no, d.dept_name
-			from "Department_Employee" as de
-			join "Departments" as d 
-			ON d.dept_no = de.dept_no) as dn 
-		 ON dn.emp_no = s.emp_no) as ds ON ds.emp_no = ti.emp_no)as es
-	ON es.emp_no = ce.emp_no
-Group BY es.title,es.dept_name
-ORDER BY es.dept_name, employee_count desc;
-;
-
+SELECT title, dept_name, count(de.emp_no) curnt_emp_count, dense_rank() over (partition by dept_name order by count(de.emp_no) desc) rnk 
+FROM current_employees c
+JOIN "Title" t ON c.emp_no = t.emp_no
+JOIN "Department_Employee" de ON c.emp_no = de.emp_no
+JOIN "Departments" d ON d.dept_no = de.dept_no
+Group by 1,2;
