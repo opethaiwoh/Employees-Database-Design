@@ -1,4 +1,3 @@
-# Background
-It’s a beautiful spring day, and it’s been two weeks since you were hired as a new data engineer at Pewlett Hackard. Your first major task is a research project on employees of the corporation from the 1980s and 1990s. All that remains of the database of employees from that period are six CSV files.
+# Employees Database Design
 
-So for this project, I designed tables to hold data from the CSV files, and import the CSV files into a PostgreSQL database
+I spearheaded the development of a comprehensive database schema, meticulously designing tables optimized for efficient data storage, query performance, and analytical flexibility. Following the schema design, I executed the data integration process by importing the CSV files into a PostgreSQL database. This process involved data validation, cleansing, and transformation to ensure the integrity and usability of the historical employee data within a relational database environment.
